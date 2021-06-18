@@ -1,0 +1,17 @@
+image: python
+
+stages:
+  - production
+
+production:
+  type: deploy
+  stage: production
+  before_script:
+    - mkdir -p ~/.ssh
+    - echo -e "$SSH_PRIVATE" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    
+  script:
+  - bash deploy.sh   
+  only:
+    - main
